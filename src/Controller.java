@@ -90,7 +90,13 @@ public class Controller {
          */
         @Override
         public void keyPressed(KeyEvent e) {
-
+            char c = e.getKeyChar();
+            if(c == 's' ){
+                if( Rink.selectedPlayer == p1)
+                    Rink.selectedPlayer = p2;
+                else
+                    Rink.selectedPlayer = p1;
+            }
         }
 
         /**
@@ -102,7 +108,13 @@ public class Controller {
          */
         @Override
         public void keyReleased(KeyEvent e) {
-
+            char c = e.getKeyChar();
+            if(c == 's' ){
+                if( Rink.selectedPlayer == p1)
+                    Rink.selectedPlayer = p2;
+                else
+                    Rink.selectedPlayer = p1;
+            }
         }
     }
 

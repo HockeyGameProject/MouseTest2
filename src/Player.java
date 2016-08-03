@@ -59,9 +59,9 @@ public class Player extends MovingObject {
                 || location.x >= rightBoundary - radius ){
 
             setSpeed(0);
-        }
+        }*/
 
-        reflection();
+        /*reflection();
 
         if((location.y <= bottomGoalPost + radius
                     && location.x >= leftGoalBack - radius
@@ -90,6 +90,7 @@ public class Player extends MovingObject {
         }
         */
         reflection();
+
         if(location.x >= rightGoalLine - radius && location.y <= bottomGoalPost + radius
                 && location.y >= topGoalPost - radius){
             setSpeed(0);
@@ -146,8 +147,18 @@ public class Player extends MovingObject {
         //location.y = (int) (location.y + getSpeed() * Math.cos(getAngle()));
         hitWalls();
 
-        location.x = (int) (location.x + getSpeed() * Math.sin(angle));
-        location.y = (int) (location.y + getSpeed() * Math.cos(angle));
+        location.x = (int) (location.x + getSpeed() * Math.cos(angle));
+        location.y = (int) (location.y + getSpeed() * Math.sin(angle));
+    }
+
+    public void updateLocation(double x, double y){
+
+        double Y = y - location.y;
+        double X = x - location.x;
+        double slope = (double) Y / X;
+        double angle = Math.atan2(Y, X);
+        setAngle(angle);
+        updateLocation();
     }
 
      /*public void paintComponent(Graphics g){
