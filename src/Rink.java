@@ -19,41 +19,24 @@ import java.util.ArrayList;
  */
 public class Rink extends JPanel implements Runnable, MouseMotionListener {
 
+
+
     Thread t;
     ArrayList<MovingObject> objects = new ArrayList<>();
-    Player p1;
+    static Player selectedPlayer;
 
-    Rink(Player p) {
+
+
+    Rink() {
         // set a preferred size for the custom panel.
         setPreferredSize(new Dimension(1000,550));
         setLayout(new BorderLayout());
-        p1 = p;
-
-        addMouseMotionListener(new MouseAdapter() {
-
-            public void mousePressed(MouseEvent e){
-
-                double slope = (double) (e.getY() - p1.location.y) / (e.getX() - p1.location.x);
-                double angle = Math.tan( slope);
-                p1.setAngle(angle);
-
-            }
-
-
-            public void mouseMoved(MouseEvent e) {
-                double slope = (double) (e.getY() - p1.location.y) / (e.getX() - p1.location.x);
-                double angle = Math.tan(slope);
-                p1.setAngle((-1) *angle);
-                System.out.println(p1.getPoint());
-
-            }
-        });
-
     }
 
     public void add(MovingObject mo){
         objects.add(mo);
     }
+
 
 
     @Override
@@ -127,7 +110,7 @@ public class Rink extends JPanel implements Runnable, MouseMotionListener {
         int i = 0;
         while(i++ < 1000) {
             try {
-                Thread.sleep(20);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -167,21 +150,24 @@ public class Rink extends JPanel implements Runnable, MouseMotionListener {
         //
     }//test
 
-
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        if(selectedPlayer != null) {
+            double slope = (double) (e.getY() - selectedPlayer.location.y) / (e.getX() - selectedPlayer.location.x);
+            double angle = Math.atan(slope);
+            selectedPlayer.setAngle(angle);
+            System.out.println(selectedPlayer.getPoint());
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        movePlayer(e, p1);
+        if(selectedPlayer != null) {
+            double slope = (double) (e.getY() - selectedPlayer.location.y) / (e.getX() - selectedPlayer.location.x);
+            double angle = Math.atan(slope);
+            selectedPlayer.setAngle(angle);
+            System.out.println(selectedPlayer.getPoint());
+        }
     }
 
-    public void movePlayer(MouseEvent e, Player p){
-        double slope = (double) (e.getY() - p.location.y) / (e.getX() - p.location.x);
-        double angle = Math.tan(slope);
-        p.setAngle(angle);
-        System.out.println("test");
-    }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * creates a player object
@@ -8,12 +9,18 @@ import java.awt.*;
 
 public class Player extends MovingObject {
 
+
+
+
+
     Color teamColor;
 
 
     public Player(int id, Point point, int speed, double angle, int radius, Color color) {
         super(id, point, speed, angle, radius, color);
         this.teamColor = color;
+        //addMouseMotionListener(new Listener());
+        //addMouseListener(new Listener());
 
     }
 
@@ -21,7 +28,7 @@ public class Player extends MovingObject {
     public Player(int id, Point point, int speed, double angle, int radius, Color color, Color teamColor) {
         super(id, point, speed, angle, radius, color);
         this.teamColor = teamColor;
-
+        //addMouseListener(new Listener());
 
     }
 
@@ -179,9 +186,6 @@ player radius 20
 stick length from center of player 40
 
 center green line 275
-
-
-
-    */
+*/
 
 }
