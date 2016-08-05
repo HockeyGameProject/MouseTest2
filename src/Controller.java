@@ -52,7 +52,7 @@ public class Controller {
         //rink.add(s5);
         Rink.selectedPlayer = p1;
         rink.addMouseMotionListener(rink);
-      ; rink.addKeyListener(new KBListener());
+      ; rink.addKeyListener(rink);
         // added moving objects
 
         ui.add(rink);
